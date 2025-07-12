@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color:#fff;
+}
+
+.main {
+    width: 60%;
+    margin: 50px auto;
+}
+
+.path {
+    background-color: lightgray;
+    padding: 12px;
+    font-size: 1.1rem;
+}
+
+.files-container {
+    margin-top: 20px;
+}
+
+.files-container a {
+    display: block;
+    background-color: lightseagreen;
+    margin-bottom: 5px;
+    padding: 10px;
+    color: #fff;
+}

@@ -4,14 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Manager</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
-    {{ range .Files }}
-        {{ if eq $.UrlPath "/" }}
-            <a href="/{{.Name}}">{{ .Name }}</a>
-        {{ else }}
-            <a href="{{$.UrlPath}}/{{.Name}}">{{ .Name }}</a>
-        {{ end }}
-    {{ end }}
+    <div class="main">
+        <div class="path">{{ .UrlPath }}</div>
+        <div class="files-container">
+            {{ range .Files }}
+                {{ if eq $.UrlPath "/" }}
+                    <a href="/{{.Name}}">{{ .Name }}</a>
+                {{ else }}
+                    <a href="{{$.UrlPath}}/{{.Name}}">{{ .Name }}</a>
+                {{ end }}
+            {{ end }}
+        </div>
+    </div>
 </body>
 </html>

@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"filemanager/internal/filemanager"
-	"fmt"
 	"net/http"
 	"os"
 
@@ -20,7 +19,7 @@ func Page(c echo.Context) error {
 	if urlPath == "/favicon.ico" {
 		return c.NoContent(http.StatusNoContent)
 	}
-	fmt.Println(urlPath)
+	//fmt.Println(urlPath)
 	files, _ := filemanager.List(urlPath)
 
 	data := &Data{files, urlPath}
