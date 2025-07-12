@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Manager</title>
+</head>
+<body>
+    {{ range .Files }}
+    <a href="/{{.Name}}">{{ .Name }}</a>
+    {{ end }}
+</body>
+</html>
