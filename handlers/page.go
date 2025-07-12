@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"filemanager/internal/filemanager"
+	"fmt"
 	"net/http"
 	"os"
 
@@ -9,7 +10,8 @@ import (
 )
 
 type Data struct {
-	Files []os.DirEntry
+	Files   []os.DirEntry
+	UrlPath string
 }
 
 func Page(c echo.Context) error {
@@ -18,9 +20,9 @@ func Page(c echo.Context) error {
 	if urlPath == "/favicon.ico" {
 		return c.NoContent(http.StatusNoContent)
 	}
-
+	fmt.Println(urlPath)
 	files, _ := filemanager.List(urlPath)
 
-	data := &Data{files}
+	data := &Data{files, urlPath}
 	return c.Render(http.StatusOK, "index.html", data)
 }
