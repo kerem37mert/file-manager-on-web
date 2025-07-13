@@ -22,7 +22,7 @@ newFile.addEventListener("click", () => {
 });
 
 newFolder.addEventListener("click", () => {
-    openForm("formNewFile");
+    openForm("formNewFolder");
 });
 
 newForm.addEventListener("submit", (event) => {
