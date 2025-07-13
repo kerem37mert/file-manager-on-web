@@ -11,11 +11,7 @@
         <div class="path">{{ .UrlPath }}</div>
         <div class="files-container">
             {{ range .Files }}
-                {{ if eq $.UrlPath "/" }}
-                    <a href="/{{.Name}}">{{ .Name }}</a>
-                {{ else }}
-                    <a href="{{$.UrlPath}}/{{.Name}}">{{ .Name }}</a>
-                {{ end }}
+                <a class="{{ if .IsDir }}folder{{ else }}file{{ end }}" href="{{ if .IsDir }}{{ if eq $.UrlPath "/" }}/{{.Name}}{{ else }}{{$.UrlPath}}/{{.Name}}{{ end }}{{ else }}javascript:void(0){{ end }}">{{ .Name }}</a>
             {{ end }}
         </div>
     </div>

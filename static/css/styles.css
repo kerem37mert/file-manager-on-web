@@ -29,3 +29,11 @@ body {
     padding: 10px;
     color: #fff;
 }
+
+.files-container .folder {
+    text-decoration: underline;
+}
+
+.files-container .file {
+    text-decoration: none;
+}
