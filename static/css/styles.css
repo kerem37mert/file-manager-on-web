@@ -34,8 +34,25 @@ body {
     border: 2px solid lightseagreen
 }
 
+.newForm {
+    display: none;
+    Margin-top: 10px;
+}
+
+.newForm input {
+    flex: 5;
+    padding: 5px;
+    font-size: 1rem;    
+}
+
+.newForm button {
+    flex: 1;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
 .files-container {
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .files-container a {

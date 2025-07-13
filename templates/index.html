@@ -10,12 +10,13 @@
     <div class="main">
         <div class="path">{{ .UrlPath }} {{ if eq .UrlPath "/" }}(root){{ end }}</div>
         <div class="buttons">
-            <a href="">New File</a>
-            <a href="">New Folder</a>
+            <a id="newFile" href="javascript:void(0)">New File</a>
+            <a id="newFolder" href="javascript:void(0)">New Folder</a>
         </div>
         <form action="" class="newForm">
             <input type="text" name="name">
             <button type="submit">Enter</button>
+            <button id="closeFormBtn" type="button">Kapat</button>
         </form>
         <div class="files-container">
             {{ range .Files }}
@@ -23,5 +24,7 @@
             {{ end }}
         </div>
     </div>
+
+    <script src="/static/js/main.js"></script>
 </body>
 </html>
