@@ -3,6 +3,7 @@ const newFile = document.getElementById("newFile");
 const newFolder = document.getElementById("newFolder");
 const newForm = document.querySelector(".newForm");
 const closeFormBtn = document.getElementById("closeFormBtn");
+const error = document.querySelector(".error");
 
 const openForm = (id) => {
     newForm.id = id;
@@ -32,5 +33,27 @@ newForm.addEventListener("submit", (event) => {
 
     if(name == "")
         return;
-    console.log(name);
+    
+    let isFolder = true;
+    if(newForm.id == "formNewFile")
+        isFolder = false;
+
+    const path = window.location.pathname;
+    const pathName = path == "/" ? `/${name}` : `${path}/${name}`; 
+    
+    fetch(`/filemanagerapi/new?name=${pathName}&isFolder=${isFolder}`, {
+        method: "GET"
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data != null) {
+            error.style.display = "block";
+            error.innerHTML = data.message;
+            return
+        }
+        window.location.reload();
+    })
+    .catch(err => {
+        console.log(err);
+    })
 });

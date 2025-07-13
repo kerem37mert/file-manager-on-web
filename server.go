@@ -24,6 +24,7 @@ func main() {
 	e.Renderer = renderer
 
 	e.GET("/*", handlers.Page)
+	e.GET("/filemanagerapi/new", handlers.New)
 
 	e.Logger.Fatal(e.Start(":1881"))
 }

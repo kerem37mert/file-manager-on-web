@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"filemanager/internal/filemanager"
 	"net/http"
 	"os"
+	"strconv"
 
 	"github.com/labstack/echo/v4"
 )
@@ -20,8 +20,37 @@ func Page(c echo.Context) error {
 		return c.NoContent(http.StatusNoContent)
 	}
 	//fmt.Println(urlPath)
-	files, _ := filemanager.List(urlPath)
+	files, _ := os.ReadDir(urlPath)
 
 	data := &Data{files, urlPath}
 	return c.Render(http.StatusOK, "index.html", data)
+}
+
+func New(c echo.Context) error {
+
+	type Error struct {
+		Message string `json:"message"`
+	}
+
+	name := c.QueryParam("name")
+	isFolder, boolError := strconv.ParseBool(c.QueryParam("isFolder"))
+
+	if boolError != nil {
+		return c.JSON(http.StatusBadRequest, &Error{"invalid parameter"})
+	}
+
+	if isFolder {
+		err := os.Mkdir(name, 0755)
+
+		if err != nil {
+			return c.JSON(http.StatusInternalServerError, &Error{err.Error()})
+		}
+	} else {
+		_, err := os.Create(name)
+
+		if err != nil {
+			return c.JSON(http.StatusInternalServerError, &Error{err.Error()})
+		}
+	}
+	return c.JSON(http.StatusOK, nil)
 }
