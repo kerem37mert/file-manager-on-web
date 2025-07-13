@@ -13,6 +13,10 @@ type Data struct {
 	UrlPath string
 }
 
+type Error struct {
+	Message string `json:"message"`
+}
+
 func Page(c echo.Context) error {
 	urlPath := c.Request().URL.Path
 
@@ -27,10 +31,6 @@ func Page(c echo.Context) error {
 }
 
 func New(c echo.Context) error {
-
-	type Error struct {
-		Message string `json:"message"`
-	}
 
 	name := c.QueryParam("name")
 	isFolder, boolError := strconv.ParseBool(c.QueryParam("isFolder"))
@@ -52,5 +52,17 @@ func New(c echo.Context) error {
 			return c.JSON(http.StatusInternalServerError, &Error{err.Error()})
 		}
 	}
+	return c.JSON(http.StatusOK, nil)
+}
+
+func Remove(c echo.Context) error {
+	path := c.QueryParam("path")
+
+	err := os.RemoveAll(path)
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, &Error{err.Error()})
+	}
+
 	return c.JSON(http.StatusOK, nil)
 }

@@ -25,6 +25,7 @@ func main() {
 
 	e.GET("/*", handlers.Page)
 	e.GET("/filemanagerapi/new", handlers.New)
+	e.GET("/filemanagerapi/remove", handlers.Remove)
 
 	e.Logger.Fatal(e.Start(":1881"))
 }

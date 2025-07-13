@@ -63,18 +63,34 @@ body {
     margin-top: 10px;
 }
 
-.files-container a {
-    display: block;
-    background-color: lightseagreen;
+.file-container {
+    display: flex;
+    align-items: center;
     margin-bottom: 5px;
-    padding: 10px;
-    color: #fff;
 }
 
-.files-container .folder {
+.file-container .item {
+    display: block;
+    background-color: lightseagreen;
+    padding: 10px;
+    color: #fff;
+    flex: 14;
+}
+
+.file-container .folder {
     text-decoration: underline;
 }
 
-.files-container .file {
+.file-container .file {
+    text-decoration: none;
+}
+
+.file-container .remove {
+    flex: 1;
+    text-align: center;
+    background-color: tomato;
+    padding: 10px;
+    margin-left: 10px;
+    color: #fff;
     text-decoration: none;
 }

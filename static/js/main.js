@@ -57,3 +57,21 @@ newForm.addEventListener("submit", (event) => {
         console.log(err);
     })
 });
+
+const remove = (path) => {
+    fetch(`/filemanagerapi/remove?path=${path}`, {
+        method: "GET"
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data != null) {
+            error.style.display = "block";
+            error.innerHTML = data.message;
+            return
+        }
+        window.location.reload();
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}

@@ -16,16 +16,19 @@
         <form action="" class="newForm">
             <input type="text" name="name">
             <button type="submit">Enter</button>
-            <button id="closeFormBtn" type="button">Kapat</button>
+            <button id="closeFormBtn" type="button">Close</button>
         </form>
         <div class="error"></div>
         <div class="files-container">
             {{ range .Files }}
-                <a class="{{ if .IsDir }}folder{{ else }}file{{ end }}" href="{{ if .IsDir }}{{ if eq $.UrlPath "/" }}/{{.Name}}{{ else }}{{$.UrlPath}}/{{.Name}}{{ end }}{{ else }}javascript:void(0){{ end }}">{{ .Name }}</a>
+                <div class="file-container">
+                    <a class="item  {{ if .IsDir }}folder{{ else }}file{{ end }}" href="{{ if .IsDir }}{{ if eq $.UrlPath "/" }}/{{.Name}}{{ else }}{{$.UrlPath}}/{{.Name}}{{ end }}{{ else }}javascript:void(0){{ end }}">{{ .Name }}</a>
+                    <a class="remove" href="javascript:void(0)" onclick='remove("{{ if eq $.UrlPath "/" }}/{{.Name}}{{ else }}{{$.UrlPath}}/{{.Name}}{{ end }}")'>Remove</a>
+                </div>
             {{ end }}
         </div>
     </div>
-
+''
     <script src="/static/js/main.js"></script>
 </body>
 </html>
